@@ -20,7 +20,7 @@ const openModal = () => emit("open-modal");
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   background: black;
@@ -40,7 +40,7 @@ const openModal = () => emit("open-modal");
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
-  color: black;
+  color: #000;
   cursor: pointer;
   flex-shrink: 0;
   font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
@@ -55,6 +55,7 @@ const openModal = () => emit("open-modal");
   -webkit-user-select: none;
   touch-action: manipulation;
   margin-top: 7vh;
+  background-color: whitesmoke;
 }
 
 .join-button:hover {

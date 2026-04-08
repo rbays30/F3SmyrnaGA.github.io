@@ -11,6 +11,7 @@
   <ContactModal v-if="showModal" @close="closeModal" />
 </template>
 
+
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { gsap } from "gsap";
@@ -33,77 +34,84 @@ const showModal = ref(false);
 const openModal = () => (showModal.value = true);
 const closeModal = () => (showModal.value = false);
 
-// --- Virtual Scroll ---
+// --- Scene Config ---
 const sceneNames = ["Join", "About", "Workouts", "Contact"];
-const virtualScroll = ref(0);
-let targetScroll = 0;
-
 const scenes = [
-  { name: "Join", ref: JoinRef, start: 0, end: 0, extra: { yMult: -0.1 } },
-  { name: "About", ref: AboutRef, start: 100, end: 500 },
-  { name: "Workouts", ref: midRef, start: 1000, end: 1300, extra: { scaleStart: 0.8, scaleEnd: 1 } },
-  { name: "Contact", ref: ContactRef, start: 1600, end: 1800 },
+  { name: "Join", ref: JoinRef },
+  { name: "About", ref: AboutRef },
+  { name: "Workouts", ref: midRef },
+  { name: "Contact", ref: ContactRef },
 ];
 
+let currentPage = 0;   // currently visible page (can be fractional for smooth animation)
+let targetPage = 0;    // page we’re snapping toward
+
+// --- Navigation ---
 function goToScene(index: number) {
-  targetScroll = scenes[index].end;
+  targetPage = Math.max(0, Math.min(index, scenes.length - 1));
 }
 
-function animateScene(scene: typeof scenes[number]) {
-  const el = scene.ref.value?.$el;
-  if (!el) return;
+// --- Animate Scenes ---
+function animateScenes() {
+  scenes.forEach((scene, index) => {
+    const el = scene.ref.value?.$el;
+    if (!el) return;
 
-  let opacity: number;
+    const isActive = Math.round(currentPage) === index;
 
-  if (scene.start === 0) {
-    opacity = 1 - virtualScroll.value / (scene.end || 1);
-  } else {
-    opacity = (virtualScroll.value - scene.start) / (scene.end - scene.start);
-  }
-
-  opacity = Math.max(0, Math.min(opacity, 1));
-
-  const props: any = { opacity, duration: 0.3 };
-  if (scene.extra?.yMult) props.y = virtualScroll.value * scene.extra.yMult;
-  if (scene.extra?.scaleStart !== undefined) {
-    const scale = scene.extra.scaleStart + opacity * (scene.extra.scaleEnd - scene.extra.scaleStart);
-    props.scale = scale;
-  }
-
-  gsap.to(el, props);
-  el.style.pointerEvents = opacity > 0.05 ? "auto" : "none";
+    gsap.to(el, {
+      opacity: isActive ? 1 : 0,
+      y: isActive ? 0 : 50,          // optional slight slide for effect
+      duration: 0.3,
+      pointerEvents: isActive ? "auto" : "none",
+      overwrite: "auto",
+    });
+  });
 }
 
-function setupVirtualScroll(maxScroll = 2000) {
+// --- Scroll / Swipe Handling ---
+function setupPageSnap() {
   let startY = 0;
 
+  // Mouse wheel → snap pages
   const onWheel = (e: WheelEvent) => {
-    targetScroll = Math.max(0, Math.min(targetScroll + e.deltaY, maxScroll));
+    if (e.deltaY > 30 && targetPage < scenes.length - 1) targetPage++;
+    else if (e.deltaY < -30 && targetPage > 0) targetPage--;
   };
 
+  // Touch swipe → snap pages
   const onTouchStart = (e: TouchEvent) => (startY = e.touches[0].clientY);
-  const onTouchMove = (e: TouchEvent) => {
-    const delta = startY - e.touches[0].clientY;
-    targetScroll = Math.max(0, Math.min(targetScroll + delta, maxScroll));
-    startY = e.touches[0].clientY;
+  const onTouchEnd = (e: TouchEvent) => {
+    const delta = startY - e.changedTouches[0].clientY;
+    if (delta > 30 && targetPage < scenes.length - 1) targetPage++;
+    else if (delta < -30 && targetPage > 0) targetPage--;
   };
 
   window.addEventListener("wheel", onWheel);
   window.addEventListener("touchstart", onTouchStart);
-  window.addEventListener("touchmove", onTouchMove);
+  window.addEventListener("touchend", onTouchEnd);
 
-  return () => {
-    window.removeEventListener("wheel", onWheel);
-    window.removeEventListener("touchstart", onTouchStart);
-    window.removeEventListener("touchmove", onTouchMove);
+  // --- Resize / fullscreen fixes ---
+  const onResize = () => {
+    scenes.forEach((scene) => {
+      if (scene.ref.value?.$el) {
+        scene.ref.value.$el.style.width = `${window.innerWidth}px`;
+        scene.ref.value.$el.style.height = `${window.innerHeight}px`;
+      }
+    });
   };
+  window.addEventListener("resize", onResize);
+  onResize();
 }
 
+// --- Mounted ---
 onMounted(() => {
-  setupVirtualScroll();
+  setupPageSnap();
+
   gsap.ticker.add(() => {
-    virtualScroll.value += (targetScroll - virtualScroll.value) * 0.1;
-    scenes.forEach(animateScene);
+    // Smoothly animate currentPage toward targetPage
+    currentPage += (targetPage - currentPage) * 0.2;
+    animateScenes();
   });
 });
 </script>
@@ -113,8 +121,9 @@ html,
 body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  touch-action: none;
+  /* allow zooming */
+  touch-action: pan-y pinch-zoom;
+  overflow-x: hidden;
 }
 
 .scene-container {

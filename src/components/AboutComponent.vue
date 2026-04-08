@@ -94,11 +94,9 @@ const activeItem = computed(() => fItems[activeF.value])
 }
 .fs-tabs button {
   position: relative;
-  z-index: 200;
 }
 .mobile-fs {
   position: relative;
-  z-index: 100;
 }
 
 .about {
@@ -113,7 +111,7 @@ const activeItem = computed(() => fItems[activeF.value])
   display: flex;
   flex-direction: column;
   padding: 2vh;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   overflow-y: auto;
 }
 
@@ -126,6 +124,8 @@ const activeItem = computed(() => fItems[activeF.value])
 .header h1 {
   font-size: clamp(1.2rem, 5vw, 3rem);
   margin: 5vh auto;
+    color:black
+
 }
 
 .header p {

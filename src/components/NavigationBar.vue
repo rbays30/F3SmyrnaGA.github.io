@@ -1,7 +1,7 @@
 <template>
   <nav class="nav-bar">
     <div class="nav-left">
-      <img src="/src/assets/logo.png" alt="Logo" class="nav-logo" />
+      <img src="/src/assets/logo.png" alt="Logo" class="nav-logo" @click="goToScene(0)" />
       <h1 class="nav-header">Smyrna F3</h1>
     </div>
 

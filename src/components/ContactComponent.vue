@@ -13,7 +13,7 @@
          <a href="https://f3atlanta.com/" >
           <button class="quote-button" href="www.f3nation.com">Check out F3 Atlanta</button>
         </a>
-         <a href="https://www.destination-url.com" target="_blank">
+         <a @click="openModal" target="_blank">
                   <button class="quote-button">Start Your Journey</button>
 
         </a>
@@ -28,22 +28,32 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+const emit = defineEmits<{
+  (e: "open-modal"): void;
+}>();
+
+const openModal = () => emit("open-modal");
+</script>
 
 <style scoped>
 .contact {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: calc(100% - 4vw);
+  padding-left: 2vw;
+  padding-right:2vw;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   font-size: 3rem;
   line-height: 3rem;
   background: rgb(173, 12, 2);
   color: white;
+  box-sizing: border-box;
+  
 }
 .quote-text {
   font-size: 3rem;
@@ -95,6 +105,7 @@ a {
   margin-top: 1vh;
   margin-bottom: 1vh;
   padding: 1rem;
+  background-color: whitesmoke;
   
 }
 .button-box {

@@ -1,6 +1,6 @@
 <template>
   
-  <div class="locations Workout">
+  <div class="Workout">
     <h2 class="title-header">Workouts</h2>
     <div class="content">    
       <!-- DESKTOP: 3 CARDS -->
@@ -58,7 +58,7 @@
           </div>
         </div>
     </div>
-        <h2 class="title-header">Show Up Early - Look For the Group</h2>
+        <h2 class="title-footer">Show Up Early - Look For the Group</h2>
 
   </div>
 </template>
@@ -117,16 +117,25 @@ const locations = {
   margin-bottom: 5vh;
   font-size: 2rem;
 }
+.title-footer {
+  color: white;
+  margin-top: 5vh;
+  background-color: black;
+  font-size: 1.5rem;
+}
 .address{
   font-size:1rem;
 }
 .Workout {
   position: absolute;
-  width: 100%;
+  width: calc(100% - 4vw);
   height: 100%;
   font-size: 3rem;
   background: black;
   color: white;
+  padding-left: 2vw;
+  padding-right:2vw;
+  box-sizing: border-box;
 }
 
 .content {
@@ -155,7 +164,7 @@ const locations = {
   transition: 0.3s;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .card:hover {
@@ -210,14 +219,14 @@ a {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    font-size: 2rem;
+    font-size: 1.rem;
   }
 
   .mobile-card {
     background: #222;
     color: white;
     border-radius: 12px;
-    padding: 0.75rem;
+    padding: 0.5rem;
     transition: 0.3s;
     width: 75vw;
   }
@@ -236,7 +245,9 @@ a {
   }
 
   .place {
-        font-size: clamp(1.5vh,4vh,5vh);
+        font-size: clamp(1.5vh,3vh,5vh);
+          line-height: 2rem;
+
 
   }
 
@@ -246,7 +257,7 @@ a {
   }
 
   .title-header {
-    margin: 1vh;
+    margin: 0.8vh;
     font-size: clamp(1.5vh,4vh,5vh);
 
   }

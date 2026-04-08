@@ -56,6 +56,7 @@ const close = () => emit("close");
 }
 .modal h2 {
   margin-top: 0;
+  color: black;
 }
 .modal form {
   display: flex;
