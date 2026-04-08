@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/shims-vue.d.ts","./src/app.vue","./src/components/aboutcomponent.vue","./src/components/contactcomponent.vue","./src/components/contactmodal.vue","./src/components/joincomponent.vue","./src/components/navigationbar.vue","./src/components/workoutcomponent.vue"],"version":"5.9.3"}
