@@ -1,25 +1,35 @@
 <template>
   <div class="contact">
-    <img class="logo-picture" src="/src/assets/logo.png" alt="F3 Logo" />
+    <img class="logo-picture" src="/src/assets/logoSquare.png" alt="F3 Logo" />
     <div class="quote">
       <div class="quote-box">
         <h2 class="quote-text">Leave no man behind, but leave
           no man where you find him.</h2>
       </div>
       <div class="button-box">
-        <a href="https://f3nation.com/" >
-          <button class="quote-button" href="www.f3nation.com">Check out F3 Nation</button>
-        </a>
-         <a href="https://f3atlanta.com/" >
-          <button class="quote-button" href="www.f3nation.com">Check out F3 Atlanta</button>
-        </a>
          <a @click="openModal" target="_blank">
                   <button class="quote-button">Start Your Journey</button>
-
         </a>
 
-      </div>      
-      <div>
+      </div> 
+      <div class="other-locs">
+        <h2 class="contact-header">Not in Smyrna? Check out other Locations</h2>
+
+        <div class="pill-container">
+          <a
+            v-for="location in locations"
+            :key="location.name"
+            class="pill"
+            :href="location.url"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ location.name }}
+          </a>
+        </div>
+      </div>
+ 
+      <div class="other-locs">
         <h2 class="contact-header">Questions?</h2>
         <h3 class="contact-text">Contact f3smyrnaga@gmail.com</h3>
       </div>
@@ -29,6 +39,13 @@
 </template>
 
 <script setup lang="ts">
+const locations = [
+  { name: "F3 West Cobb", url: "http://f3westcobb.com/" },
+  { name: "F3 Marietta", url: "https://www.f3marietta.com/" },
+  { name: "F3 Alpharetta", url: "https://f3alpha.com/" },
+  { name: "F3 Atlanta", url: "https://www.f3atlanta.com/"},
+  {name: "F3 Nation", url: "https://f3nation.com/"}
+];
 const emit = defineEmits<{
   (e: "open-modal"): void;
 }>();
@@ -41,7 +58,7 @@ const openModal = () => emit("open-modal");
   position: absolute;
   top: 0;
   left: 0;
-  width: calc(100% - 4vw);
+  width: 100vw;
   padding-left: 2vw;
   padding-right:2vw;
   height: 100%;
@@ -55,11 +72,48 @@ const openModal = () => emit("open-modal");
   box-sizing: border-box;
   
 }
+.pill-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1vh;
+  max-width: 80vw;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+
+  background-color: whitesmoke;
+  color: black;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+
+  transition: all 0.2s ease;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 2px 6px;
+}
+
+.pill:hover {
+  transform: translateY(-2px);
+  box-shadow: black 0 4px 14px;
+}
+
+.other-locs {
+  padding: 2vh;
+}
+
 .quote-text {
   font-size: 3rem;
   color: white;
   font-style: italic;
-  padding: 1vh;
+  margin: 0;
+  padding: 2vh;
   max-width: 60%;
   display: flex;
   align-items: center;
@@ -112,6 +166,7 @@ a {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+  padding: 2vh;
 }
 
 .contact-header {
@@ -151,20 +206,33 @@ a {
   .quote-text {
     font-size: clamp(1.5vh,3vh,5vh);
     max-width:80vw;
+    padding:1vh;
   }
   .button-box {
     flex-direction: column;
     align-items: center;
+    padding:1vh;
   }
 
   .contact-header {
     font-size: clamp(1.5vh,3vh,5vh);
-    margin: 1vh;
+    margin:0
 
+  }
+
+  .other-locs {
+    padding:1vh;
   }
 
   .contact-text {
     font-size: 1rem;
+    margin:0;
+  }
+
+  .pill {
+    font-size: clamp(12px, 1vw, 36px);
+      padding: 0.1rem 0.75rem;
+
   }
 
 }

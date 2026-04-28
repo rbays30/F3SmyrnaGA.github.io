@@ -1,8 +1,8 @@
 <template>
   <nav class="nav-bar">
     <div class="nav-left">
-      <img src="/src/assets/logo.png" alt="Logo" class="nav-logo" @click="goToScene(0)" />
-      <h1 class="nav-header">Smyrna F3</h1>
+      <img src="/src/assets/logoSquare.png" alt="Logo" class="nav-logo" @click="goToScene(0)" />
+      <h1 class="nav-header">F3 Smyrna GA</h1>
     </div>
 
     <!-- Desktop Links -->
@@ -74,8 +74,10 @@ function toggleMenu() {
   align-items: center;
   justify-content: flex-start; /* <-- align left */
   background: black;
-  padding: 0 20px;
+  padding-left: clamp(16px, 3vw, 32px);
+  padding-right: clamp(16px, 3vw, 32px);
   z-index: 1000;
+  box-sizing: border-box;
 }
 
 /* Left section: logo + title */

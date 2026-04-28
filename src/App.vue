@@ -2,7 +2,7 @@
   <NavigationBar :scenes="sceneNames" :scrollToScene="goToScene" />
 
   <div class="scene-container">
-    <JoinComponent ref="JoinRef" class="interactive" @open-modal="openModal" />
+    <HomeComponent ref="HomeRef" class="interactive" @open-modal="openModal" />
     <AboutComponent ref="AboutRef" class="interactive" />
     <WorkoutComponent ref="midRef" class="interactive" />
     <ContactComponent ref="ContactRef" class="interactive" @open-modal="openModal" />
@@ -17,14 +17,14 @@ import { ref, onMounted } from "vue";
 import { gsap } from "gsap";
 
 import NavigationBar from "./components/NavigationBar.vue";
-import JoinComponent from "./components/JoinComponent.vue";
+import HomeComponent from "./components/HomeComponent.vue";
 import AboutComponent from "./components/AboutComponent.vue";
 import WorkoutComponent from "./components/WorkoutComponent.vue";
 import ContactComponent from "./components/ContactComponent.vue";
 import ContactModal from "./components/ContactModal.vue";
 
 // --- Scene Refs ---
-const JoinRef = ref<InstanceType<typeof JoinComponent> | null>(null);
+const HomeRef = ref<InstanceType<typeof HomeComponent> | null>(null);
 const AboutRef = ref<InstanceType<typeof AboutComponent> | null>(null);
 const midRef = ref<InstanceType<typeof WorkoutComponent> | null>(null);
 const ContactRef = ref<InstanceType<typeof ContactComponent> | null>(null);
@@ -35,9 +35,9 @@ const openModal = () => (showModal.value = true);
 const closeModal = () => (showModal.value = false);
 
 // --- Scene Config ---
-const sceneNames = ["Join", "About", "Workouts", "Contact"];
+const sceneNames = ["Home", "About", "Workouts", "Contact"];
 const scenes = [
-  { name: "Join", ref: JoinRef },
+  { name: "Home", ref: HomeRef },
   { name: "About", ref: AboutRef },
   { name: "Workouts", ref: midRef },
   { name: "Contact", ref: ContactRef },

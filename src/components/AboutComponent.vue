@@ -113,6 +113,7 @@ const activeItem = computed(() => fItems[activeF.value])
   padding: 2vh;
   justify-content: flex-start;
   overflow-y: auto;
+  box-sizing: border-box;
 }
 
 /* HEADER */
