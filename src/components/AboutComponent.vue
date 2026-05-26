@@ -71,12 +71,12 @@ const fItems = {
   fitness: {
     icon: 'fas fa-dumbbell',
     title: 'Fitness',
-    text: 'Open to all men. Workouts are scalable and push you.'
+    text: 'Workouts are scalable and push you.'
   },
   fellowship: {
     icon: 'fas fa-handshake',
     title: 'Fellowship',
-    text: 'Build strong bonds through shared challenge.'
+    text: 'Build bonds through shared challenge.'
   },
   faith: {
     icon: 'fas fa-hands-praying',
@@ -103,8 +103,8 @@ const activeItem = computed(() => fItems[activeF.value])
   position: absolute;
   top: 0;
   left: 0;
-  width: calc(100vw - 4vw);
-  height: 100%;
+  width: 100vw;
+  max-height: calc(100dvh - 60px);
   background: white;
   color: black;
 

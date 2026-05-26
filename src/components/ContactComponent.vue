@@ -61,7 +61,8 @@ const openModal = () => emit("open-modal");
   width: 100vw;
   padding-left: 2vw;
   padding-right:2vw;
-  height: 100%;
+  max-height: calc(100dvh - 60px);
+
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -77,8 +78,8 @@ const openModal = () => emit("open-modal");
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.75rem;
-  margin-top: 1vh;
-  max-width: 80vw;
+  margin-top: 1dvh;
+  max-width: 100vw;
 }
 
 .pill {
@@ -105,7 +106,7 @@ const openModal = () => emit("open-modal");
 }
 
 .other-locs {
-  padding: 2vh;
+  padding: 2dvh;
 }
 
 .quote-text {
@@ -113,7 +114,7 @@ const openModal = () => emit("open-modal");
   color: white;
   font-style: italic;
   margin: 0;
-  padding: 2vh;
+  padding: 2dvh;
   max-width: 60%;
   display: flex;
   align-items: center;
@@ -124,7 +125,7 @@ const openModal = () => emit("open-modal");
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 50vh;
+  height: 50dvh;
   text-align: center;
 }
 .quote-box {
@@ -156,8 +157,8 @@ a {
   -webkit-user-select: none;
   touch-action: manipulation;
   max-width: 100%;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
+  margin-top: 1dvh;
+  margin-bottom: 1dvh;
   padding: 1rem;
   background-color: whitesmoke;
   
@@ -166,7 +167,7 @@ a {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  padding: 2vh;
+  padding: 2dvh;
 }
 
 .contact-header {
@@ -179,7 +180,7 @@ a {
 }
 
 .logo-picture{
-  height: 50vh;
+  height: 50dvh;
   width: auto;
 }
 
@@ -188,10 +189,10 @@ a {
   transition-duration: .1s;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1600px) {
   .quote-button {
     padding: 0 2.6rem;
-    font-size: clamp(1.5vh,2vh,5vh);
+    font-size: clamp(1.5dvh,2dvh,5dvh);
 
   }
   .contact {
@@ -199,29 +200,29 @@ a {
     justify-content: start;
   }
   .logo-picture {
-    height: 25vh;
+    height: 25dvh;
     width: auto;
-    margin: 1vh;
+    margin: 1dvh;
   }
   .quote-text {
-    font-size: clamp(1.5vh,3vh,5vh);
+    font-size: clamp(1.5dvh,3dvh,5dvh);
     max-width:80vw;
-    padding:1vh;
+    padding:1dvh;
   }
   .button-box {
     flex-direction: column;
     align-items: center;
-    padding:1vh;
+    padding:1dvh;
   }
 
   .contact-header {
-    font-size: clamp(1.5vh,3vh,5vh);
+    font-size: clamp(1.5dvh,3dvh,5dvh);
     margin:0
 
   }
 
   .other-locs {
-    padding:1vh;
+    padding:1dvh;
   }
 
   .contact-text {

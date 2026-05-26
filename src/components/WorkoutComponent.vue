@@ -85,9 +85,9 @@
 <script setup>
 import { ref } from 'vue'
 
-import warningImg from '/src/assets/warningtrack.jpeg'
-// import sakImg from '@/assets/warningtrack.jpg'
-// import madhouseImg from '@/assets/warningtrack.jpg'
+import warningImg from '/src/assets/warningtrack.png'
+import sakImg from '/src/assets/swissarmyknife.png'
+import madhouseImg from '/src/assets/madhouse.jpeg'
 
 const activeLocation = ref('warning') // 🔥 ALWAYS DEFAULT ACTIVE
 
@@ -109,7 +109,7 @@ const locations = {
       'Saturday – 6:30am–7:30am'
     ],
 
-    address: '3590 King Springs Rd SE, Smyrna, GA 30080',
+    address: '3515 McCauley Rd, Smyrna, GA',
 
     map: 'https://www.google.com/maps/search/?api=1&query=3590+King+Springs+Rd+SE+Smyrna+GA'
   },
@@ -122,7 +122,7 @@ const locations = {
      x: 86.5,
     y: 20,
 
-    photo: '/src/assets/sak.jpg',
+    photo: sakImg,
 
     schedule: [
       'Monday – 5:45am–6:30am',
@@ -142,13 +142,13 @@ const locations = {
      x: 44.5,
     y: 55,
 
-    photo: '/src/assets/madhouse.jpg',
+    photo: madhouseImg,
 
     schedule: [
       'Friday – 5:45am–6:15am'
     ],
 
-    address: '3180 Atlanta Rd SE, Smyrna, GA 30080',
+    address: '3000 Park Road, Smyrna, GA',
 
     map: 'https://www.google.com/maps/search/?api=1&query=3180+Atlanta+Rd+SE+Smyrna+GA'
   }
@@ -172,6 +172,10 @@ function getPosition(loc) {
   color: white;
   display: flex;
   flex-direction: column;
+  max-height: calc(100dvh - 60px);
+  padding: 2dvh;
+  box-sizing: border-box;
+
 }
 
 /* HEADER */
@@ -218,7 +222,9 @@ function getPosition(loc) {
   inset: 0;
 
   background-image: url('/src/assets/map.png');
-  background-size: cover;
+
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
 
   filter: grayscale(1) brightness(0.6);
@@ -335,7 +341,7 @@ function getPosition(loc) {
 /* PHOTO */
 .photo {
   width: 100%;
-  height: 50vh;
+  height: 50dvh;
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 12px;
@@ -390,7 +396,7 @@ function getPosition(loc) {
   100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 725px) {
 
   /* HARD LOCK THE ENTIRE PAGE WIDTH */
   .workout-scene {
@@ -408,26 +414,28 @@ function getPosition(loc) {
   }
 
   .title-header{
-    margin: 0;
+    margin-top: 2vh;
   }
 
   /* MAP FIX */
   .map-panel {
     max-width: 100%;
     width: 100%;
-    max-height: 40vh;
+    max-height: 50dvh;
   }
 
   .map-frame {
     width: 100%;
     max-width: 100%;
+        max-height: 40dvh;
+
   }
 
   /* 🔥 THIS IS THE KEY FIX */
   .details-panel {
     width: 100%;
     max-width: 100%;
-    max-height: 40vh;
+    max-height: 40dvh;
     box-sizing: border-box;
     padding: 2vw;
     justify-content: start;

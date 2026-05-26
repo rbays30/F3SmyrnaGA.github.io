@@ -124,12 +124,14 @@ body {
   /* allow zooming */
   touch-action: pan-y pinch-zoom;
   overflow-x: hidden;
+  overscroll-behavior: none;
+overflow: hidden;
 }
 
 .scene-container {
   position: fixed;
   width: 100%;
-  height: calc(100vh - 60px);
+  height: calc(100dvh - 60px);
   top: 60px;
   left: 0;
   pointer-events: none;
