@@ -407,6 +407,7 @@ function getPosition(loc) {
     flex-direction: column;
     gap: 12px;
     padding: 12px;
+    flex-direction: start;
 
     /* IMPORTANT */
     width: 100%;
@@ -419,9 +420,10 @@ function getPosition(loc) {
 
   /* MAP FIX */
   .map-panel {
+    flex:0;
     max-width: 100%;
     width: 100%;
-    max-height: 50dvh;
+    max-height: 40dvh;
   }
 
   .map-frame {
@@ -431,8 +433,8 @@ function getPosition(loc) {
 
   }
 
-  /* 🔥 THIS IS THE KEY FIX */
   .details-panel {
+    flex:0;
     width: 100%;
     max-width: 100%;
     max-height: 40dvh;
